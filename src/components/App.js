@@ -1,5 +1,7 @@
 import React from 'react';
 import './App.css';
+import Button from './UI/Button/button';
+import Form from './UI/Form/form';
 
 // eslint-disable-next-line react/prefer-stateless-function
 class App extends React.Component {
@@ -67,17 +69,7 @@ class App extends React.Component {
               <h1>React & Firebase Todo App</h1>
             </header>
             <main className="col col-12">
-              <form style={{ marginBottom: '20px' }} onSubmit={this.handleSubmit}>
-                <input
-                  value={todo}
-                  name="todo"
-                  onChange={this.handleChange}
-                  className="form-control"
-                  type="text"
-                  placeholder="Enter todo here...[Press Enter]"
-                  autoComplete="off"
-                />
-              </form>
+              <Form todo={todo} change={this.handleChange} submit={this.handleSubmit} />
               <ul className="todos list-groups" style={{ padding: 0 }}>
                 {(todos.length === 0)
                   ? (<li className="todo list-group-item">No todos yet</li>)
@@ -97,23 +89,7 @@ class App extends React.Component {
                       >
                         {item.text}
                       </span>
-                      <button
-                        onClick={() => this.handleRemove(key)}
-                        type="button"
-                        className="btn btn-sm btn-danger"
-                        style={{
-                          position: 'absolute',
-                          top: 0,
-                          bottom: 0,
-                          right: '1.25rem',
-                          margin: 'auto 0',
-                          height: '25px',
-                          paddingTop: 0,
-                          paddingBottom: 0,
-                        }}
-                      >
-                        &times;
-                      </button>
+                      <Button action={() => this.handleRemove(key)} buttonName="&times;" />
                     </li>
                   )))}
               </ul>
